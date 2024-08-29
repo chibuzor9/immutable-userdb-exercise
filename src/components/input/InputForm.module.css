@@ -1,0 +1,11 @@
+label {
+    font-size: large;
+    font-weight: bolder;
+    display: block;
+}
+
+input {
+    width: 100%;
+    margin: .5rem auto;
+    height: 30px;
+}
