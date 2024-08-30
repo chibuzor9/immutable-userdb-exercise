@@ -3,7 +3,6 @@ import './App.css';
 
 import InputForm from './components/input/InputForm';
 import RenderDetails from './components/display/RenderDetails';
-import Modal from './components/UI/Modal';
 
 function App() {
 	const [data, setData] = useState([

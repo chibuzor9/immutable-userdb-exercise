@@ -11,7 +11,7 @@ const InputForm = (props) => {
 
 	const [formData, setFormData] = useState({
 		username: '',
-		age: +'',
+		age: '',
 	});
 
 	const onSubmitHandler = (event) => {
