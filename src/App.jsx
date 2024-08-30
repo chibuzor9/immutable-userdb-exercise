@@ -26,10 +26,10 @@ function App() {
 	};
 
 	return (
-		<div>
+		<>
 			<InputForm onUpdateDetails={updateDetails} />
 			<RenderDetails renderData={data} />
-		</div>
+		</>
 	);
 }
 
