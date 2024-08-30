@@ -1,25 +1,25 @@
 import styles from './InputForm.module.css';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 
 const InputForm = (props) => {
-	// eslint-disable-next-line no-unused-vars
-	const [error, setError] = useState();
+	const nameRef = useRef();
+	const ageRef = useRef();
 
-	const [formData, setFormData] = useState({
-		username: '',
-		age: '',
-	});
+	const [error, setError] = useState();
 
 	const onSubmitHandler = (event) => {
 		event.preventDefault();
 
+		const currUsername = nameRef.current.value;
+		const currAge = ageRef.current.value;
+
 		if (
-			formData.username.trim().length === 0 ||
-			formData.age.trim().length === 0
+			currUsername.trim().length === 0 ||
+			currAge.trim().length === 0
 		) {
 			setError({
 				title: 'Invalid Input',
@@ -29,7 +29,7 @@ const InputForm = (props) => {
 			return;
 		}
 
-		if (+formData.age < 0) {
+		if (+currAge < 0) {
 			setError({
 				title: 'Invalid Age',
 				message:
@@ -38,18 +38,13 @@ const InputForm = (props) => {
 			return;
 		}
 
-		props.onUpdateDetails(formData);
-
-		setFormData({
-			username: '',
-			age: '',
+		props.onUpdateDetails({
+			username: currUsername,
+			age: +currAge,
 		});
-	};
 
-	const onChangeHandler = (event) => {
-		const { name, value } = event.target;
-
-		setFormData({ ...formData, [name]: value });
+		nameRef.current.value = ''
+		ageRef.current.value = ''
 	};
 
 	const clearModalHandler = () => {
@@ -72,20 +67,16 @@ const InputForm = (props) => {
 					</label>
 					<input
 						type="text"
-						value={formData.username}
-						name="username"
-						onChange={onChangeHandler}
 						className={styles.input}
+						ref={nameRef}
 					/>
 					<label className={styles.label}>
 						Age (Years)
 					</label>
 					<input
 						type="number"
-						value={formData.age}
-						name="age"
-						onChange={onChangeHandler}
 						className={styles.input}
+						ref={ageRef}
 					/>
 					<Button>Add User</Button>
 				</form>
