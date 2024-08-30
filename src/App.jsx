@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import './App.css';
+
 import InputForm from './components/input/InputForm';
 import RenderDetails from './components/display/RenderDetails';
-import './App.css';
+import Modal from './components/UI/Modal';
 
 function App() {
 	const [data, setData] = useState([
